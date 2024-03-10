@@ -1,0 +1,70 @@
+#test calc_test_1
+  char str[255] = "457.846+cos(1-164.664)*(-2)";
+  double result = 455.9360269745;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_2
+  char str[255] = "tan(1)/(-8)";
+  double result = -0.194675966;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_3
+  char str[255] = "8^3/1684.7+sin(3)*sqrt(10)";
+  double result = 0.750172325;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_4
+  char str[255] = "acos(-1)^(-2)+(tan(7)-185.445/(-1))";
+  double result = 186.417769167;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_5
+  char str[255] = "-185674.1556*ln(10)^0/(-12)";
+  double result = -0.083333333;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+
+#test calc_test_6
+  char str[255] = "2^(asin(1))*(-tan(8mod3))";
+  double result = 6.491068257;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_7
+  char str[255] = "log(-atan(452mod(cos(-2))))";
+  double result = -0.47094255;
+  double my_result;
+  start_calc(str, &my_result);
+  ck_assert_ldouble_eq_tol(result, my_result, 1e-7);
+
+#test calc_test_8
+  char str[255] = "log(-atan(452mod(cos(-2)))";
+  int result_exit_code = ERROR;
+  double my_result;
+  int my_result_exit_code = start_calc(str, &my_result);
+  ck_assert_int_eq(result_exit_code, my_result_exit_code);
+  
+#test calc_test_9
+  char str[255] = "2^(asin(1))*(-tan(8mod3))/0";
+  int result_exit_code = ERROR;
+  double my_result;
+  int my_result_exit_code = start_calc(str, &my_result);
+  ck_assert_int_eq(result_exit_code, my_result_exit_code);
+
+#test calc_test_10
+  char str[255] = "tan()/(-8)";
+  int result_exit_code = ERROR;
+  double my_result;
+  int my_result_exit_code = start_calc(str, &my_result);
+  ck_assert_int_eq(result_exit_code, my_result_exit_code);
